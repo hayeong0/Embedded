@@ -13,17 +13,17 @@ int main() {
   gOLED.setTextSize(2); 
   gOLED.printf("Hayeong\r\n\n");
   gOLED.setTextSize(1); 
-  gOLED.printf("Temperature: \r\n");
+  gOLED.printf("Temperature: \r\n\n");
   gOLED.printf("Humidity:");
   
   while(1) {
       gOLED.setTextCursor(13*6, 4*8);
-      int temp = i2c.sample_ctemp();
-      gOLED.printf("%4.1f C", temp/10.0);
+      float temp = i2c.sample_ctemp();
+      gOLED.printf("%.1f [c]", temp);
       
       gOLED.setTextCursor(13*6, 6*8);
-      int hum = i2c.sample_ctemp();
-      gOLED.printf("%4.1f C", hum/10.0);
+      float hum = i2c.sample_humid();
+      gOLED.printf("%.1f [%%]", hum);
       
       gOLED.display();
       ThisThread::sleep_for(3000ms);
